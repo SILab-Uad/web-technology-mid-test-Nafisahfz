@@ -1,27 +1,24 @@
-export function generatePassword(length, options) {
+export const generatePassword = (length, options) => {
+    const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const lowercase = "abcdefghijklmnopqrstuvwxyz";
+    const numbers = "0123456789";
+    const specialChars = "!@#$%^&*()";
 
-    // TODO: Create a variable for the character set based on selected options
-    let characters = '';
-    if (options.includeUppercase) {
-        characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    }
-    if (options.includeLowercase) {
-        characters += 'abcdefghijklmnopqrstuvwxyz';
-    }
-    if (options.includeNumbers) {
-        characters += '0123456789';
-    }
-    if (options.includeSpecialChars) {
-        characters += '!@#$%^&*()';
+    let characterSet = '';
+    if (options.includeUppercase) characterSet += uppercase;
+    if (options.includeLowercase) characterSet += lowercase;
+    if (options.includeNumbers) characterSet += numbers;
+    if (options.includeSpecialChars) characterSet += specialChars;
+
+    if (characterSet === '') {
+        throw new Error('At least one character type must be selected.');
     }
 
-
-    // TODO: Generate the password based on the selected criteria
     let password = '';
     for (let i = 0; i < length; i++) {
-        password += characters.charAt(Math.floor(Math.random() * characters.length));
+        const randomIndex = Math.floor(Math.random() * characterSet.length);
+        password += characterSet[randomIndex];
     }
-    // TODO: Add event listener to the button to call generatePassword and display the output
+
     return password;
-}
-// BONUS: Implement the copy to clipboard functionality
+};
