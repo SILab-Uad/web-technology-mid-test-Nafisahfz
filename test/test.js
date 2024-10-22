@@ -80,5 +80,5 @@ describe('Password Generator Tests', () => {
         console.log(`\nTotal tests: ${totalTests}`);
         console.log(`Passed: ${passedTests}`);
         console.log(`Failed: ${failedTests}`);
-    });
+    });
 });
